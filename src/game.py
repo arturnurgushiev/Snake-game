@@ -24,7 +24,7 @@ class Game:
 
     def show_score(self, color, font, size):
         score_font = pygame.font.SysFont(font, size)
-        score_surface = score_font.render('Score : ' + str(len(self.snake.body) * 10 - 10), True, color)
+        score_surface = score_font.render(f"Score : {len(self.snake.body) * 10 - 10}", True, color)
         score_rect = score_surface.get_rect()
         self.screen.blit(score_surface, score_rect)
 
@@ -33,7 +33,7 @@ class Game:
         score = len(self.snake.body) * 10 - 10
         self.leaderboard.update_scores(score)
         game_over_surface = my_font.render(
-            'Your Score is : ' + str(score), True, red)
+            f"Your Score is : {score}", True, red)
         game_over_rect = game_over_surface.get_rect()
         game_over_rect.midtop = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 4)
         self.screen.blit(game_over_surface, game_over_rect)
