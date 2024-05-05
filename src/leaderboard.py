@@ -1,3 +1,5 @@
+import os
+
 from src.constants import *
 
 
@@ -7,20 +9,20 @@ class Leaderboard:
 
     @staticmethod
     def load_scores():
-        file = open("src/leaderboard.txt", "r")
+        file = open(os.path.join("src", "leaderboard.txt"), "r")
         pb = list(map(int, file.readline().split()))
         file.close()
         return pb
 
     def update_scores(self, score):
         pb = self.load_scores()
-        file = open("src/leaderboard.txt", "w")
+        file = open(os.path.join("src", "leaderboard.txt"), "w")
         pb.append(score)
         pb.sort(reverse=True)
         pb.pop()
         line = ""
         for i in pb:
-            line += str(i) + ' '
+            line += f"{i} "
         file.write(line)
         file.close()
 
